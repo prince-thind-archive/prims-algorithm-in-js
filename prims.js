@@ -17,7 +17,7 @@ function prims()
     function findInitialNode()
     {
 
-        let target;
+        let target=0;
         for (let i = 0; i < 7; i++)
         {
             for (let j = 0; j < 7; j++)
@@ -34,8 +34,8 @@ function prims()
 
     function createEdges()
     {
-        let rowNode;
-        let columnNode;
+        let rowNode=0;
+        let columnNode=0;
 
         for (let k = 0; k < 6; k++)
         {
