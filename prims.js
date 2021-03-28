@@ -65,7 +65,7 @@ function prims()
     {
         for ([i, j] of edges)
         {
-            resultString += alphaMap[i] + "-" + alphaMap[j] + ", ";
+             resultString += alphaMap[i] + "-" + alphaMap[j] +"("+primsArr[i][j]+") , ";
         }
         resultString = "Result: " + resultString;
 
