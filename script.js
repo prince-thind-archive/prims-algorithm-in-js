@@ -40,7 +40,7 @@ function generateMatrixDivs()
 {
     for (let i = 0; i < 7; i++)
     {
-    
+
         matrixElementFields.push([]);
         for (let j = 0; j < 7; j++)
         {
@@ -61,15 +61,11 @@ function randomiseMatrixDivs()
         {
             if (i == j)
             {
-                matrixElementFields[i][j].value = Infinity;
+                matrixElementFields[i][j].value = 0;
             }
             if (i < j)
             {
-                if (Math.trunc(Math.random() * 5) == 0)
-                {
-                    matrixElementFields[i][j].value=Infinity;
-                }
-                else { matrixElementFields[i][j].value = Math.trunc(Math.random() * 25 + 1); }
+                matrixElementFields[i][j].value = Math.trunc(Math.random() * 26);
             }
             else
             {

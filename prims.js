@@ -22,7 +22,7 @@ function prims()
         {
             for (let j = 0; j < 7; j++)
             {
-                if (primsArr[i][j] < min)
+                if (primsArr[i][j] < min &&primsArr[i][j]!=0)
                 {
                     min = primsArr[i][j];
                     target = i;
@@ -46,7 +46,7 @@ function prims()
 
                 for (let j = 0; j < 7; j++)
                 {
-                    if (primsArr[i][j] < min && !visited.includes(j))
+                    if (primsArr[i][j] < min && !visited.includes(j) && primsArr[i][j]!=0)
                     {
                         unconnectedGraphFlag = false;
                         min = primsArr[i][j];
