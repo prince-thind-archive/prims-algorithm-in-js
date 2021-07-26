@@ -1,5 +1,5 @@
 import './style.css';
-import prims from './prims.js';
+import prims from './prims';
 
 const DOMNodes = (() => {
   const matrix = document.querySelector('.matrix');
@@ -17,29 +17,29 @@ const DOMNodes = (() => {
 })();
 
 (() => {
-  const matrixElementFields = [];
-
-  initializeMatrix(matrixElementFields);
+  const matrixElementFields = initialMatrix();
 
   DOMNodes.generateBtn.addEventListener('click', randomiseMatrixDivs);
   DOMNodes.findPathBtn.addEventListener('click', main);
 
-  function initializeMatrix(matrixElementFields) {
-    for (let i = 0; i < 7; i++) {
-      matrixElementFields.push([]);
-      for (let j = 0; j < 7; j++) {
+  function initialMatrix() {
+    const arr = [];
+    for (let i = 0; i < 7; i += 1) {
+      arr.push([]);
+      for (let j = 0; j < 7; j += 1) {
         const matrixElement = document.createElement('input');
         matrixElement.classList.add('matrix-element');
         matrixElement.value = 0;
-        matrixElementFields[i][j] = matrixElement;
+        arr[i][j] = matrixElement;
         DOMNodes.matrix.appendChild(matrixElement);
       }
     }
+    return arr;
   }
   function randomiseMatrixDivs() {
-    for (let i = 0; i < 7; i++) {
-      for (let j = 0; j < 7; j++) {
-        if (i == j) {
+    for (let i = 0; i < 7; i += 1) {
+      for (let j = 0; j < 7; j += 1) {
+        if (i === j) {
           matrixElementFields[i][j].value = 0;
         }
         if (i < j) {
@@ -52,37 +52,37 @@ const DOMNodes = (() => {
   }
 
   function main() {
-    let matrixArr = constructArrFromFields(matrixElementFields);
+    const matrixArr = constructArrFromFields(matrixElementFields);
     const { edges, resultWeight, unconnectedFlag } = prims(matrixArr);
     printResult(edges, resultWeight, matrixArr, unconnectedFlag);
   }
 
-  function constructArrFromFields(matrixElementFields) {
+  function constructArrFromFields(matrixFields) {
     const arr = [];
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 7; i += 1) {
       arr.push([]);
-      for (let j = 0; j < 7; j++) {
-        arr[i][j] = +matrixElementFields[i][j].value;
+      for (let j = 0; j < 7; j += 1) {
+        arr[i][j] = +matrixFields[i][j].value;
       }
     }
     return arr;
   }
   function printResult(edges, resultWeight, matrixArr, unconnectedGraphFlag) {
-    let alphaMap = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+    const alphaMap = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
     let resultString = '';
-    let i = null,
-      j = null;
 
-    for ([i, j] of edges) {
+    edges.forEach((edge) => {
+      const [i, j] = edge;
       resultString += `${alphaMap[i]}-${alphaMap[j]}(${matrixArr[i][j]}), `;
-    }
-    resultString = 'Result: ' + resultString;
+    });
+
+    resultString = `Result: ${resultString}`;
 
     if (unconnectedGraphFlag) {
       resultString += ' (Unconnected Graph)';
     }
 
     DOMNodes.resultText.textContent = resultString;
-    DOMNodes.resultWeight.textContent = 'Total Weight: ' + resultWeight;
+    DOMNodes.resultWeight.textContent = `Total Weight: ${resultWeight}`;
   }
 })();

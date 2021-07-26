@@ -1,7 +1,7 @@
 function prims(matrixArr) {
   let resultWeight = 0;
-  let visited = [];
-  let edges = [];
+  const visited = [];
+  const edges = [];
   let min = Infinity;
   let unconnectedGraphFlag = true;
 
@@ -10,9 +10,9 @@ function prims(matrixArr) {
 
   function findInitialNode() {
     let target = 0;
-    for (let i = 0; i < 7; i++) {
-      for (let j = 0; j < 7; j++) {
-        if (matrixArr[i][j] < min && matrixArr[i][j] != 0) {
+    for (let i = 0; i < 7; i += 1) {
+      for (let j = 0; j < 7; j += 1) {
+        if (matrixArr[i][j] < min && matrixArr[i][j] !== 0) {
           min = matrixArr[i][j];
           target = i;
         }
@@ -25,15 +25,17 @@ function prims(matrixArr) {
     let rowNode = 0;
     let columnNode = 0;
 
-    for (let k = 0; k < 6; k++) {
+    for (let k = 0; k < 6; k += 1) {
       min = Infinity;
       unconnectedGraphFlag = true;
-      for (let i of visited) {
-        for (let j = 0; j < 7; j++) {
+
+      for (let index = 0; index < visited.length; index += 1) {
+        const i = visited[index];
+        for (let j = 0; j < 7; j += 1) {
           if (
             matrixArr[i][j] < min &&
             !visited.includes(j) &&
-            matrixArr[i][j] != 0
+            matrixArr[i][j] !== 0
           ) {
             unconnectedGraphFlag = false;
             min = matrixArr[i][j];
@@ -42,12 +44,12 @@ function prims(matrixArr) {
           }
         }
       }
+
       visited.push(columnNode);
       edges.push([rowNode, columnNode]);
       resultWeight += min;
     }
   }
-
 
   return { edges, resultWeight, unconnectedGraphFlag };
 }
