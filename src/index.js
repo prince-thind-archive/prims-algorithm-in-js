@@ -2,11 +2,11 @@ import './style.css';
 import prims from './prims';
 
 const DOMNodes = (() => {
-  const matrix = document.querySelector('.matrix');
-  const generateBtn = document.querySelector('.generate-button');
-  const findPathBtn = document.querySelector('.find-path');
-  const resultText = document.querySelector('.result-text');
-  const resultWeight = document.querySelector('.result-weight');
+  const matrix = document.querySelector('#matrix');
+  const generateBtn = document.querySelector('#generate-button');
+  const findPathBtn = document.querySelector('#find-path');
+  const resultText = document.querySelector('#result-text');
+  const resultWeight = document.querySelector('#result-weight');
   return {
     matrix,
     generateBtn,
