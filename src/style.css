@@ -2,20 +2,21 @@
   margin: 0;
   padding: 0;
 }
-html {
+body {
   color: white;
   text-align: center;
-  background: url(./assets/background1.png) no-repeat center fixed;
-  background-size: cover;
-}
-body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+
+  background: url(./assets/background.png) no-repeat center fixed;
+  background-blend-mode: soft-light;
+  background-color: hsl(40, 50%, 25%);
+  background-size: cover;
 }
 .header {
-  background-color: rgba(25, 75, 0, 0.9);
-  margin-bottom: 1em;
+  background-color: hsl(100, 50%, 15%);
+  margin-bottom: 2rem;
 }
 .heading {
   padding: 0.2em;
@@ -40,17 +41,20 @@ body {
   background-color: rgba(10, 82, 0, 0.479);
   display: flex;
   justify-content: space-evenly;
-}
-
-.row-numbers {
-  flex-direction: column;
-}
-.column-numbers {
   align-items: center;
 }
 .empty {
   padding: 0.5rem;
 }
+
+.row-numbers {
+  flex-direction: column;
+  border-top: 2px solid black;
+}
+.column-numbers {
+  border-left: 2px solid black;
+}
+
 .matrix {
   background-color: rgb(97, 52, 0);
   border-top: 2px solid black;
@@ -63,12 +67,10 @@ body {
   margin: 0.5rem;
 }
 .buttons > *:hover {
-  background-color: rgb(49, 36, 13);
-  color: white;
   transform: scale(1.1);
 }
 .results {
-  background-color: rgba(36, 22, 10, 0.9);
+  background-color: hsl(28, 57%, 9%);
   padding: 0.3rem;
 }
 .results > * {
@@ -78,7 +80,7 @@ body {
 .copyright {
   background-color: rgb(14, 14, 14);
   padding: 0.7rem;
-  border-top:1px solid white;
+  border-top: 1px solid white;
 }
 .source {
   color: white;
@@ -89,22 +91,23 @@ body {
 .matrix {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 1em;
+  gap: 1rem;
 }
 
 /* js classes */
 .matrix-element {
   background-color: rgb(106, 80, 255);
-  width: 3em;
-  aspect-ratio: 1;
+  width: 3rem;
+  height: 3rem;
   justify-self: center;
   text-align: center;
   color: white;
 }
 
 /*media queries*/
-@media (max-width: 750px) {
+@media only screen and (max-width: 760px) {
   .matrix-element {
-    width: 1.5em;
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }
